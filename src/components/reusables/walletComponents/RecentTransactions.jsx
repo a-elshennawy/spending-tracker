@@ -57,11 +57,9 @@ export default function RecentTransactions() {
             >
               {formatDate(transaction.timestamp)}{" "}
               {transaction.type === "deposit" ? "+" : "-"}
-              {/* Added .toFixed(2) and replaced hardcoded 'EGP' with {currency} */}
               {transaction.amount.toFixed(2)} {currency} (balance:{" "}
               {transaction.balanceAfter.toFixed(2)} {currency})
-              {/* <-- Updated this line */}
-              {transaction.category && `on ${transaction.category}`}{" "}
+              {transaction.category && ` on ${transaction.category}`}{" "}
               <FaCircle />
             </h5>
           ))

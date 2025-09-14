@@ -157,14 +157,6 @@ export default function BalanceActions() {
       return;
     }
 
-    if (transactionType === "withdraw" && !category) {
-      setError("Category is required for withdrawals.");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-
     try {
       const walletRef = doc(db, "wallets", currentUser.uid);
       const newAmount = parseFloat(amount);
@@ -268,34 +260,16 @@ export default function BalanceActions() {
                   required
                 />
               </div>
-              {transactionType === "withdraw" && (
-                <div className="py-2">
-                  <label htmlFor="category">Category</label>
-                  <select
-                    id="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    required
-                  >
-                    <option value="">Select a category</option>
-                    <option value="transportation">Transportation</option>
-                    <option value="medical">Medical</option>
-                    <option value="groceries">Groceries</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="clothes">Clothes</option>
-                    <option value="others">Others</option>
-                  </select>
-                </div>
-              )}
               <div className="py-2">
-                <label htmlFor="description">Description (optional)</label>
-                <textarea
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                <label htmlFor="category">Category</label>
+                <input
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
                 />
               </div>
-              <div className="text-end">
+              <div className="text-end pt-2">
                 <button className="mx-1" type="button" onClick={closeModal}>
                   Cancel
                 </button>
