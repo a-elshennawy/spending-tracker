@@ -167,7 +167,7 @@ export default function BalanceActions() {
 
     try {
       const walletRef = doc(db, "wallets", currentUser.uid);
-      const newAmount = parseInt(amount);
+      const newAmount = parseFloat(amount);
 
       if (transactionType === "withdraw" && balance < newAmount) {
         setError("Insufficient balance.");
@@ -177,8 +177,8 @@ export default function BalanceActions() {
 
       const newBalance =
         transactionType === "deposit"
-          ? balance + newAmount
-          : balance - newAmount;
+          ? parseFloat(balance) + parseFloat(newAmount)
+          : parseFloat(balance) - parseFloat(newAmount);
 
       const newTransaction = {
         amount: newAmount,
