@@ -261,7 +261,7 @@ export default function BalanceActions() {
                 />
               </div>
               <div className="py-2">
-                <label htmlFor="category">Category</label>
+                <label htmlFor="category">reason for transaction</label>
                 <input
                   type="text"
                   value={category}
