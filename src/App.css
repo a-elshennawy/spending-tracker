@@ -163,17 +163,6 @@ nav {
 .home {
   color: #fff;
 
-  .noWallet {
-    .createWalletBtn {
-      background-color: #fff;
-      color: #000;
-      padding: 5px 10px;
-      border: none;
-      margin-inline-end: 10px;
-      font-weight: bold;
-    }
-  }
-
   .welcome {
     h2 {
       font-size: 2.5rem;
@@ -207,6 +196,7 @@ nav {
       border: none;
       margin-inline-end: 10px;
       font-weight: bold;
+      border-radius: 8px;
     }
 
     select {
@@ -255,6 +245,7 @@ nav {
       padding: 5px 10px;
       background-color: #0059fd;
       border: none;
+      border-radius: 8px;
       a {
         text-decoration: none;
         color: #fff;
