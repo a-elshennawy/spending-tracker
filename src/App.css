@@ -1,0 +1,369 @@
+@import url("./fonts.css");
+
+* {
+  box-sizing: border-box;
+  text-transform: capitalize !important;
+  font-family: ubuntu !important;
+}
+
+:root {
+  font-size: 16px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #223 !important;
+}
+
+section {
+  padding: 10px 0px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 10px 5px;
+  background-color: #0000004b;
+  backdrop-filter: blur(10px);
+  text-align: end;
+
+  .logInBtn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  .logoutBtn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fd0000;
+    color: #fff;
+  }
+}
+
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("/public/imgs/landingPageBG.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(30%);
+}
+
+.toHomeBtn {
+  position: fixed;
+  top: 10px;
+  left: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+
+  a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.landingPage {
+  .innerDev {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content !important;
+
+    .text {
+      color: #fff;
+    }
+
+    .action {
+      padding: 10px 0px;
+      .signUpBtn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: #fff;
+        transition: all 0.3s ease-in-out;
+
+        a {
+          color: #000;
+          text-decoration: none;
+          font-weight: bold;
+          transition: all 0.3s ease-in-out;
+        }
+
+        &:hover {
+          background-color: #000;
+          box-shadow: 0 0 10px #fff;
+
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logForm {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background-color: #fff;
+  padding: 10px 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #223;
+
+  .inputContainer {
+    margin: 10px 0px;
+    input,
+    select {
+      background-color: #fff;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 5px #000;
+      padding: 5px;
+      width: fit-content;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 10px #000;
+      }
+    }
+  }
+
+  .logBtn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.home {
+  color: #fff;
+
+  .noWallet {
+    .createWalletBtn {
+      background-color: #fff;
+      color: #000;
+      padding: 5px 10px;
+      border: none;
+      margin-inline-end: 10px;
+      font-weight: bold;
+    }
+  }
+
+  .welcome {
+    h2 {
+      font-size: 3.125rem;
+    }
+  }
+
+  .balance {
+    width: max-content;
+    border-bottom: 1px solid #fff;
+
+    h3 {
+      font-size: 2.188rem;
+    }
+
+    h1 {
+      font-size: 4.375rem;
+
+      span {
+        margin-inline-start: 10px;
+        cursor: pointer;
+        svg {
+          font-size: 1.875rem;
+        }
+      }
+    }
+  }
+
+  .actions {
+    button {
+      padding: 5px 10px;
+      border: none;
+      margin-inline-end: 10px;
+      font-weight: bold;
+    }
+
+    select {
+      padding: 5px 10px;
+      border: none;
+      outline: 1px solid #fff;
+      background-color: #223;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .depBtn {
+      background-color: #2bff00;
+      color: #000;
+    }
+
+    .withdrawBtn {
+      background-color: #fd0000;
+      color: #fff;
+    }
+  }
+
+  .recent {
+    h5 {
+      padding: 0.313rem 0rem;
+      font-size: 1.25rem;
+
+      svg {
+        margin-inline-start: 5px;
+        font-size: 0.625rem;
+      }
+    }
+    .withdraw {
+      color: #ff0000;
+      svg {
+        filter: drop-shadow(0 0 10px #fd0000);
+      }
+    }
+    .deposit {
+      color: #2bff00;
+      svg {
+        filter: drop-shadow(0 0 10px #2bff00);
+      }
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #0059fd;
+      border: none;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.moneyModal {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+
+  label {
+    display: block;
+    padding-bottom: 5px;
+  }
+  input,
+  select,
+  textarea {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff !important;
+    font-weight: bold;
+  }
+}
+
+.transactions {
+  color: #fff;
+
+  .spendReport {
+    .spendItem {
+      background: rgba(255, 255, 255, 0.1) !important;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: #fff !important;
+      padding: 20px;
+
+      h3 {
+        font-size: 1.25rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .logs {
+    h5 {
+      padding: 0.313rem 0rem;
+      font-size: 1.25rem;
+
+      svg {
+        margin-inline-start: 5px;
+        font-size: 0.625rem;
+      }
+    }
+    .withdraw {
+      color: #ff0000;
+      svg {
+        filter: drop-shadow(0 0 10px #fd0000);
+      }
+    }
+    .deposit {
+      color: #2bff00;
+      svg {
+        filter: drop-shadow(0 0 10px #2bff00);
+      }
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #0059fd;
+      border: none;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    font-size: 14px;
+  }
+}
