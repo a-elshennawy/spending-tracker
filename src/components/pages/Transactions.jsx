@@ -46,13 +46,23 @@ export default function Transactions() {
 
           const startOfWeek = new Date(today);
           const day = today.getDay();
-          const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 1 + 6;
-          startOfWeek.setDate(diff);
+
+          let diff;
+          if (day === 6) {
+            diff = 0;
+          } else if (day === 0) {
+            diff = -6;
+          } else {
+            diff = day + 1;
+          }
+
+          startOfWeek.setDate(today.getDate() - diff);
           startOfWeek.setHours(0, 0, 0, 0);
 
           const currentWeekWithdrawals = walletData.transactions.filter(
             (t) => t.type === "withdraw" && t.timestamp.toDate() >= startOfWeek
           );
+
           const totalWeeklySpent = currentWeekWithdrawals.reduce(
             (sum, t) => sum + t.amount,
             0
@@ -76,6 +86,7 @@ export default function Transactions() {
     const day = date.getDate();
     return `${month}/${day}`;
   };
+
   return (
     <>
       <section className="transactions container-fluid m-0 row gap-1 justify-content-start align-items-center">
@@ -103,10 +114,12 @@ export default function Transactions() {
                   transaction.type === "deposit" ? "deposit" : "withdraw"
                 }
               >
-                {formatDate(transaction.timestamp)}{" "}
+                {formatDate(transaction.timestamp)}
                 {transaction.type === "deposit" ? "+" : "-"}
-                {transaction.amount} {currency} ({transaction.balanceAfter}
-                {currency}){transaction.category}
+                {transaction.amount}
+                {currency}&nbsp;(&nbsp;
+                {transaction.balanceAfter.toFixed(2)}&nbsp;
+                {currency}&nbsp;)&nbsp;{transaction.category}
                 <FaCircle />
               </h5>
             ))
