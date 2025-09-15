@@ -57,7 +57,7 @@ export default function RecentTransactions() {
             >
               {formatDate(transaction.timestamp)}{" "}
               {transaction.type === "deposit" ? "+" : "-"}
-              {transaction.amount.toFixed(2)} {currency} (balance:
+              {transaction.amount.toFixed(2)} {currency} (
               {transaction.balanceAfter.toFixed(2)} {currency}) &nbsp;
               {transaction.category}
               <FaCircle />

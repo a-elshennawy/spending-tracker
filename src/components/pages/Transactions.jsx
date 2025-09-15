@@ -105,9 +105,8 @@ export default function Transactions() {
               >
                 {formatDate(transaction.timestamp)}{" "}
                 {transaction.type === "deposit" ? "+" : "-"}
-                {transaction.amount} {currency} (balance:
-                {transaction.balanceAfter} {currency})
-                {transaction.category ? ` on ${transaction.category}` : null}
+                {transaction.amount} {currency} ({transaction.balanceAfter}
+                {currency}){transaction.category}
                 <FaCircle />
               </h5>
             ))
