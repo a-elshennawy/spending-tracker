@@ -59,7 +59,9 @@ export default function RecentTransactions() {
               {transaction.type === "deposit" ? "+" : "-"}
               {transaction.amount.toFixed(2)} {currency} (balance:{" "}
               {transaction.balanceAfter.toFixed(2)} {currency})
-              {transaction.category && ` on ${transaction.category}`}{" "}
+              {transaction.type === "deposit"
+                ? ` from ${transaction.category}`
+                : ` on ${transaction.category}`}
               <FaCircle />
             </h5>
           ))
