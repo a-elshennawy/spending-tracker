@@ -149,7 +149,7 @@ export default function Transactions() {
               >
                 {formatDate(transaction.timestamp)}&nbsp;
                 {transaction.type === "deposit" ? "+" : "-"}
-                {transaction.amount}
+                {transaction.amount}&nbsp;
                 {currency}&nbsp;(&nbsp;
                 {transaction.balanceAfter.toFixed(2)}&nbsp;
                 {currency}&nbsp;)&nbsp;{transaction.category}
