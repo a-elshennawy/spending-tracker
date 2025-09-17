@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   text-transform: capitalize !important;
-  font-family: ubuntu !important;
+  font-family: ubuntu, zain !important;
 }
 
 :root {
