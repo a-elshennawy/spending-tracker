@@ -1,8 +1,10 @@
 import { FaCircle } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../../firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc, arrayRemove } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
+import { RiDeleteBack2Fill } from "react-icons/ri";
 
 export default function Transactions() {
   const { currentUser } = useAuth();
@@ -10,6 +12,7 @@ export default function Transactions() {
   const [currency, setCurrency] = useState("EGP");
   const [monthlySpent, setMonthlySpent] = useState(0);
   const [weeklySpent, setWeeklySpent] = useState(0);
+  const [walletData, setWalletData] = useState(null);
 
   useEffect(() => {
     if (!currentUser.uid) {
@@ -20,6 +23,8 @@ export default function Transactions() {
     const unsubscribe = onSnapshot(walletRef, (walletSnap) => {
       if (walletSnap.exists()) {
         const walletData = walletSnap.data();
+        setWalletData(walletData);
+
         if (walletData.transactions) {
           const sortedTransactions = [...walletData.transactions].sort(
             (a, b) => b.timestamp.seconds - a.timestamp.seconds
@@ -87,6 +92,34 @@ export default function Transactions() {
     return `${month}/${day}`;
   };
 
+  const handleDeleteTransaction = async (transaction) => {
+    if (
+      !walletData ||
+      !window.confirm("Are you sure you want to delete this transaction?")
+    ) {
+      return;
+    }
+
+    try {
+      const walletRef = doc(db, "wallets", currentUser.uid);
+
+      let newBalance;
+      if (transaction.type === "deposit") {
+        newBalance = walletData.balance - transaction.amount;
+      } else {
+        newBalance = walletData.balance + transaction.amount;
+      }
+
+      await updateDoc(walletRef, {
+        balance: newBalance,
+        transactions: arrayRemove(transaction),
+      });
+    } catch (error) {
+      console.error("Error deleting transaction:", error);
+      alert("Failed to delete transaction. Please try again.");
+    }
+  };
+
   return (
     <>
       <section className="transactions container-fluid m-0 row gap-1 justify-content-start align-items-center">
@@ -114,13 +147,20 @@ export default function Transactions() {
                   transaction.type === "deposit" ? "deposit" : "withdraw"
                 }
               >
-                {formatDate(transaction.timestamp)}
+                {formatDate(transaction.timestamp)}&nbsp;
                 {transaction.type === "deposit" ? "+" : "-"}
                 {transaction.amount}
                 {currency}&nbsp;(&nbsp;
                 {transaction.balanceAfter.toFixed(2)}&nbsp;
                 {currency}&nbsp;)&nbsp;{transaction.category}
                 <FaCircle />
+                <span
+                  className="delLog"
+                  onClick={() => handleDeleteTransaction(transaction)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <RiDeleteBack2Fill />
+                </span>
               </h5>
             ))
           ) : (
