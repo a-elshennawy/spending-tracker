@@ -89,7 +89,7 @@ export default function RecentTransactions() {
             >
               {formatDate(transaction.timestamp)}&nbsp;
               {transaction.type === "deposit" ? "+" : "-"}
-              {transaction.amount.toFixed(2)}
+              {transaction.amount.toFixed(2)}&nbsp;
               {currency}&nbsp;(&nbsp;
               {transaction.balanceAfter.toFixed(2)} {currency}&nbsp;)&nbsp;
               {transaction.category}
