@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../../firebase";
 import { doc, onSnapshot, updateDoc, arrayRemove } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { RiDeleteBack2Fill } from "react-icons/ri";
+import { TiDelete } from "react-icons/ti";
 
 export default function RecentTransactions() {
   const { currentUser } = useAuth();
@@ -99,7 +99,7 @@ export default function RecentTransactions() {
                 onClick={() => handleDeleteTransaction(transaction)}
                 style={{ cursor: "pointer" }}
               >
-                <RiDeleteBack2Fill />
+                <TiDelete />
               </span>
             </h5>
           ))

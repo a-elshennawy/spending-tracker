@@ -35,7 +35,7 @@ nav {
   .logInBtn {
     padding: 5px 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #fff;
 
     a {
@@ -48,7 +48,7 @@ nav {
   .logoutBtn {
     padding: 5px 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #fd0000;
     color: #fff;
   }
@@ -71,7 +71,7 @@ nav {
   left: 5px;
   padding: 5px 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #fff;
 
   a {
@@ -98,7 +98,7 @@ nav {
       .signUpBtn {
         padding: 5px 10px;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         background-color: #fff;
         transition: all 0.3s ease-in-out;
 
@@ -137,7 +137,7 @@ nav {
     input,
     select {
       background-color: #fff;
-      border-radius: 8px;
+      border-radius: 10px;
       border: none;
       box-shadow: 0 0 5px #000;
       padding: 5px;
@@ -153,7 +153,7 @@ nav {
   .logBtn {
     padding: 5px 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #000;
     color: #fff;
     font-weight: bold;
@@ -196,7 +196,7 @@ nav {
       border: none;
       margin-inline-end: 10px;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     select {
@@ -240,21 +240,15 @@ nav {
     }
     .withdraw {
       color: #ff0000;
-      svg {
-        filter: drop-shadow(0 0 10px #fd0000);
-      }
     }
     .deposit {
       color: #2bff00;
-      svg {
-        filter: drop-shadow(0 0 10px #2bff00);
-      }
     }
     button {
       padding: 5px 10px;
       background-color: #0059fd;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       a {
         text-decoration: none;
         color: #fff;
@@ -279,7 +273,7 @@ nav {
   select,
   textarea {
     padding: 5px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #fff;
     border: none;
 
@@ -290,7 +284,7 @@ nav {
 
   button {
     padding: 5px 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -343,15 +337,9 @@ nav {
 
     .withdraw {
       color: #ff0000;
-      svg {
-        filter: drop-shadow(0 0 10px #fd0000);
-      }
     }
     .deposit {
       color: #2bff00;
-      svg {
-        filter: drop-shadow(0 0 10px #2bff00);
-      }
     }
     button {
       padding: 5px 10px;
@@ -371,6 +359,32 @@ nav {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.offline-message {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: max-content;
+  background-color: #fd000096;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  padding: 5px;
+  border-radius: 10px;
+  animation: alertOffline 1s infinite;
+}
+
+@keyframes alertOffline {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 992px) {

@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Loader from "./components/reusables/Loader";
+import { Offline } from "react-detect-offline";
 
 const LandingPage = lazy(() => import("./components/pages/LandingPage"));
 const Transactions = lazy(() => import("./components/pages/Transactions"));
@@ -13,6 +14,11 @@ const ForgetPassword = lazy(() => import("./components/pages/ForgetPassword"));
 function App() {
   return (
     <>
+      <Offline>
+        <div className="offline-message">
+          You're offline. Check your connection.
+        </div>
+      </Offline>
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
