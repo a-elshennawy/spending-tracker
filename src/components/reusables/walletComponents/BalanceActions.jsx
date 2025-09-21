@@ -198,7 +198,7 @@ export default function BalanceActions() {
   return (
     <>
       <div className="balance col-12 px-0 mb-2">
-        <h3>your current balance is</h3>
+        <h3>current balance</h3>
         <h1>
           {balance !== null ? balance.toFixed(2) : "Loading..."} {currency}
           <span>
@@ -209,6 +209,7 @@ export default function BalanceActions() {
           </span>
         </h1>
       </div>
+      <hr />
 
       <div className="actions d-flex col-12 px-0">
         <button onClick={() => openModal("deposit")} className="depBtn">

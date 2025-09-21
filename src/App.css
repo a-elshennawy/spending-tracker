@@ -8,6 +8,10 @@
 
 :root {
   font-size: 16px;
+  --main: #d1d3c4; /*background*/
+  --sec: #351431; /*change currency & all btns */
+  --tri: #bdc696; /* deposite btn */
+  --text: #775253; /* all text */
 }
 
 html,
@@ -16,7 +20,7 @@ body {
 }
 
 body {
-  background-color: #223 !important;
+  background-color: var(--main) !important;
 }
 
 section {
@@ -36,10 +40,10 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--main);
 
     a {
-      color: #000;
+      color: var(--sec);
       text-decoration: none;
       font-weight: bold;
     }
@@ -49,7 +53,7 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: #fd0000;
+    background-color: var(--sec);
     color: #fff;
   }
 }
@@ -72,10 +76,10 @@ nav {
   padding: 5px 10px;
   border: none;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--sec);
 
   a {
-    color: #000;
+    color: var(--main);
     text-decoration: none;
     font-weight: bold;
   }
@@ -90,7 +94,7 @@ nav {
     width: max-content !important;
 
     .text {
-      color: #fff;
+      color: var(--main);
     }
 
     .action {
@@ -99,23 +103,12 @@ nav {
         padding: 5px 10px;
         border: none;
         border-radius: 10px;
-        background-color: #fff;
-        transition: all 0.3s ease-in-out;
+        background-color: var(--main);
 
         a {
-          color: #000;
+          color: var(--sec);
           text-decoration: none;
           font-weight: bold;
-          transition: all 0.3s ease-in-out;
-        }
-
-        &:hover {
-          background-color: #000;
-          box-shadow: 0 0 10px #fff;
-
-          a {
-            color: #fff;
-          }
         }
       }
     }
@@ -127,25 +120,24 @@ nav {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
-  background-color: #fff;
+  background-color: var(--sec);
+  color: var(--main);
   padding: 10px 5px;
   border-radius: 10px;
-  box-shadow: 0 0 10px #223;
 
   .inputContainer {
     margin: 10px 0px;
-    input,
-    select {
-      background-color: #fff;
+    input {
+      background-color: var(--main);
       border-radius: 10px;
       border: none;
-      box-shadow: 0 0 5px #000;
+      box-shadow: 0 0 5px var(--sec);
       padding: 5px;
       width: fit-content;
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 10px #000;
+        box-shadow: 0 0 10px var(--sec);
       }
     }
   }
@@ -154,37 +146,31 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--main);
+    color: var(--sec);
     font-weight: bold;
   }
 }
 
 .home {
-  color: #fff;
-
-  .welcome {
-    h2 {
-      font-size: 2.5rem;
-    }
-  }
+  color: var(--text);
 
   .balance {
     width: max-content;
-    border-bottom: 1px solid #fff;
 
     h3 {
       font-size: 2.188rem;
     }
 
     h1 {
-      font-size: 4.375rem;
+      font-size: 3.75rem;
 
       span {
         margin-inline-start: 10px;
         cursor: pointer;
         svg {
           font-size: 1.875rem;
+          color: var(--sec);
         }
       }
     }
@@ -209,12 +195,12 @@ nav {
     }
 
     .depBtn {
-      background-color: #2bff00;
-      color: #000;
+      background-color: var(--tri);
+      color: var(--sec);
     }
 
     .withdrawBtn {
-      background-color: #fd0000;
+      background-color: var(--sec);
       color: #fff;
     }
   }
@@ -234,19 +220,14 @@ nav {
         margin-inline-start: 5px;
         svg {
           font-size: 20px;
-          color: #ff0000 !important;
+          color: var(--sec) !important;
         }
       }
     }
-    .withdraw {
-      color: #ff0000;
-    }
-    .deposit {
-      color: #2bff00;
-    }
+
     button {
       padding: 5px 10px;
-      background-color: #0059fd;
+      background-color: var(--sec);
       border: none;
       border-radius: 10px;
       a {
@@ -294,16 +275,16 @@ nav {
 }
 
 .transactions {
-  color: #fff;
+  color: var(--text);
 
   .spendReport {
     .spendItem {
       width: fit-content;
-      background: rgba(255, 255, 255, 0.1) !important;
+      background: rgba(56, 56, 56, 0.1) !important;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 10px;
-      color: #fff !important;
+      color: var(--text) !important;
       padding: 10px;
 
       h3 {
@@ -330,20 +311,13 @@ nav {
         margin-inline-start: 5px;
         svg {
           font-size: 20px;
-          color: #ff0000 !important;
+          color: var(--sec) !important;
         }
       }
     }
 
-    .withdraw {
-      color: #ff0000;
-    }
-    .deposit {
-      color: #2bff00;
-    }
     button {
       padding: 5px 10px;
-      background-color: #0059fd;
       border: none;
       a {
         text-decoration: none;
