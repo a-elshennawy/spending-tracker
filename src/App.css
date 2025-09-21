@@ -37,17 +37,18 @@ body.dark {
 }
 
 section {
-  padding: 10px 0px;
+  padding: 60px 0px;
 }
 
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 10px 5px;
   background-color: #0000004b;
   backdrop-filter: blur(10px);
   text-align: end;
+  z-index: 111;
 
   .logInBtn {
     padding: 5px 10px;
@@ -347,6 +348,15 @@ nav {
   padding: 5px;
   border-radius: 10px;
   animation: alertOffline 1s infinite;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @keyframes alertOffline {
