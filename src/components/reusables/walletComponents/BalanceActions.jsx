@@ -247,11 +247,14 @@ export default function BalanceActions() {
             className="moneyModal text-start"
           >
             <h4>{transactionType} form</h4>
-            <form onSubmit={handleSubmit}>
+            <form
+              onSubmit={handleSubmit}
+              className="row justify-content-start align-items-center"
+            >
               {error && (
                 <p style={{ color: "red", textAlign: "center" }}>{error}</p>
               )}
-              <div className="py-2">
+              <div className="py-2 col-12">
                 <label htmlFor="amount">Amount</label>
                 <input
                   type="number"
@@ -261,7 +264,7 @@ export default function BalanceActions() {
                   required
                 />
               </div>
-              <div className="py-2">
+              <div className="py-2 col-12">
                 <label htmlFor="category">reason for transaction</label>
                 <input
                   type="text"
@@ -270,7 +273,7 @@ export default function BalanceActions() {
                   required
                 />
               </div>
-              <div className="text-end pt-2">
+              <div className="pt-2 col-12">
                 <button className="mx-1" type="button" onClick={closeModal}>
                   Cancel
                 </button>
@@ -324,7 +327,7 @@ export default function BalanceActions() {
                 ))}
               </select>
             </div>
-            <div className="text-end">
+            <div>
               <button
                 className="mt-2"
                 onClick={() => setShowCurrencyModal(false)}
