@@ -13,9 +13,6 @@ export default function Home() {
   return (
     <>
       <section className="container-fluid m-0 home row justify-content-start align-items-center gap-2">
-        <div className="welcome col-12 px-0">
-          <h2>welcome {getDisplayName(currentUser?.email)},</h2>
-        </div>
         <BalanceActions />
         <RecentTransactions />
       </section>
