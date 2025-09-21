@@ -125,19 +125,13 @@ export default function Transactions() {
       <section className="transactions container-fluid m-0 row gap-1 justify-content-start align-items-center">
         <div className="spendReport col-12 col-lg-4 px-0 m-0 row gap-1 justify-content-start align-items-center">
           <div className="spendItem col-3 m-0">
-            <h3>current balance</h3>
-            <h1>
-              {walletData ? walletData.balance.toFixed(2) : "0.00"} {currency}
-            </h1>
-          </div>
-          <div className="spendItem col-3 m-0">
-            <h3>monthly withdrawals</h3>
+            <h3>monthly spent</h3>
             <h1>
               {monthlySpent} {currency}
             </h1>
           </div>
           <div className="spendItem col-3 m-0">
-            <h3>weekly withdrawals</h3>
+            <h3>weekly spent</h3>
             <h1>
               {weeklySpent} {currency}
             </h1>

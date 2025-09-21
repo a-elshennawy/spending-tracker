@@ -338,15 +338,16 @@ nav {
 
 .offline-message {
   position: fixed;
-  top: 20%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -10%);
   width: max-content;
   background-color: #fd000096;
   color: #fff;
   backdrop-filter: blur(10px);
   padding: 5px;
   border-radius: 10px;
+  z-index: 1111;
   animation: alertOffline 1s infinite;
 }
 
