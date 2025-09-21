@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { ThemeToggle } from "../contexts/ThemeProvider";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -25,6 +26,7 @@ export default function Navbar() {
                 <Link to={"/"}>home</Link>
               </button>
             )}
+            <ThemeToggle />
             <button className="logoutBtn" onClick={handleLogout}>
               sign out
             </button>

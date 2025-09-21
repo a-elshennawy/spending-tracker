@@ -8,10 +8,12 @@
 
 :root {
   font-size: 16px;
-  --main: #d1d3c4; /*background*/
-  --sec: #351431; /*change currency & all btns */
-  --tri: #bdc696; /* deposite btn */
-  --text: #775253; /* all text */
+  --background: #d1d3c4;
+  --text: #775253;
+  --btns_1: #351431;
+  --btns_2: #bdc696;
+  --textInBtns_1: #d1d3c4;
+  --textInBtns_2: #351431;
 }
 
 html,
@@ -20,7 +22,18 @@ body {
 }
 
 body {
-  background-color: var(--main) !important;
+  background-color: var(--background) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark {
+  --background: #351431;
+  --text: #d1d3c4;
+  --btns_1: #d1d3c4;
+  --btns_2: #bdc696;
+  --textInBtns_1: #351431;
+  --textInBtns_2: #351431;
+  transition: all 0.3s ease-in-out;
 }
 
 section {
@@ -40,10 +53,10 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: var(--main);
+    background-color: var(--btns_2);
 
     a {
-      color: var(--sec);
+      color: var(--textInBtns_2);
       text-decoration: none;
       font-weight: bold;
     }
@@ -53,8 +66,16 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: var(--sec);
-    color: #fff;
+    background-color: var(--btns_1);
+    color: var(--textInBtns_1);
+  }
+
+  .themeIcon {
+    cursor: pointer;
+    svg {
+      font-size: 25px;
+      color: var(--btns_1);
+    }
   }
 }
 
@@ -76,10 +97,10 @@ nav {
   padding: 5px 10px;
   border: none;
   border-radius: 10px;
-  background-color: var(--sec);
+  background-color: var(--btns_1);
 
   a {
-    color: var(--main);
+    color: var(--textInBtns_1);
     text-decoration: none;
     font-weight: bold;
   }
@@ -94,7 +115,7 @@ nav {
     width: max-content !important;
 
     .text {
-      color: var(--main);
+      color: var(--textInBtns_1);
     }
 
     .action {
@@ -103,10 +124,10 @@ nav {
         padding: 5px 10px;
         border: none;
         border-radius: 10px;
-        background-color: var(--main);
+        background-color: var(--btns_1);
 
         a {
-          color: var(--sec);
+          color: var(--textInBtns_1);
           text-decoration: none;
           font-weight: bold;
         }
@@ -120,24 +141,22 @@ nav {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
-  background-color: var(--sec);
-  color: var(--main);
+  background-color: var(--btns_1);
+  color: var(--textInBtns_1);
   padding: 10px 5px;
   border-radius: 10px;
 
   .inputContainer {
     margin: 10px 0px;
     input {
-      background-color: var(--main);
+      background-color: var(--textInBtns_1);
       border-radius: 10px;
       border: none;
-      box-shadow: 0 0 5px var(--sec);
       padding: 5px;
       width: fit-content;
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 10px var(--sec);
       }
     }
   }
@@ -146,8 +165,8 @@ nav {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    background-color: var(--main);
-    color: var(--sec);
+    background-color: var(--textInBtns_1);
+    color: var(--btns_1);
     font-weight: bold;
   }
 }
@@ -170,7 +189,7 @@ nav {
         cursor: pointer;
         svg {
           font-size: 1.875rem;
-          color: var(--sec);
+          color: var(--btns_1);
         }
       }
     }
@@ -185,23 +204,14 @@ nav {
       border-radius: 10px;
     }
 
-    select {
-      padding: 5px 10px;
-      border: none;
-      outline: 1px solid #fff;
-      background-color: #223;
-      color: #fff;
-      font-weight: bold;
-    }
-
     .depBtn {
-      background-color: var(--tri);
-      color: var(--sec);
+      background-color: var(--btns_2);
+      color: var(--textInBtns_2);
     }
 
     .withdrawBtn {
-      background-color: var(--sec);
-      color: #fff;
+      background-color: var(--btns_1);
+      color: var(--textInBtns_1);
     }
   }
 
@@ -220,19 +230,19 @@ nav {
         margin-inline-start: 5px;
         svg {
           font-size: 20px;
-          color: var(--sec) !important;
+          color: var(--btns_1) !important;
         }
       }
     }
 
     button {
       padding: 5px 10px;
-      background-color: var(--sec);
+      background-color: var(--btns_1);
       border: none;
       border-radius: 10px;
       a {
         text-decoration: none;
-        color: #fff;
+        color: var(--textInBtns_1);
         font-weight: bold;
       }
     }
@@ -311,18 +321,8 @@ nav {
         margin-inline-start: 5px;
         svg {
           font-size: 20px;
-          color: var(--sec) !important;
+          color: var(--btns_1) !important;
         }
-      }
-    }
-
-    button {
-      padding: 5px 10px;
-      border: none;
-      a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: bold;
       }
     }
   }
