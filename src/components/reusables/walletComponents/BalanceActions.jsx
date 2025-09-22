@@ -235,26 +235,13 @@ export default function BalanceActions() {
             zIndex: 999,
           }}
         >
-          <div
-            ref={modalRef}
-            style={{
-              padding: "20px",
-              backgroundColor: "white",
-              borderRadius: "5px",
-              width: "90%",
-              maxWidth: "400px",
-            }}
-            className="moneyModal text-start"
-          >
+          <div ref={modalRef} className="moneyModal text-start">
             <h4>{transactionType} form</h4>
-            <form
-              onSubmit={handleSubmit}
-              className="row justify-content-start align-items-center"
-            >
+            <form onSubmit={handleSubmit}>
               {error && (
                 <p style={{ color: "red", textAlign: "center" }}>{error}</p>
               )}
-              <div className="py-2 col-12">
+              <div className="py-2 ">
                 <label htmlFor="amount">Amount</label>
                 <input
                   type="number"
@@ -264,7 +251,7 @@ export default function BalanceActions() {
                   required
                 />
               </div>
-              <div className="py-2 col-12">
+              <div className="py-2 ">
                 <label htmlFor="category">reason for transaction</label>
                 <input
                   type="text"
@@ -301,17 +288,7 @@ export default function BalanceActions() {
             zIndex: 999,
           }}
         >
-          <div
-            ref={modalRef}
-            style={{
-              padding: "20px",
-              backgroundColor: "white",
-              borderRadius: "5px",
-              width: "90%",
-              maxWidth: "400px",
-            }}
-            className="moneyModal text-start"
-          >
+          <div ref={modalRef} className="moneyModal text-start">
             <h4>Select a new currency</h4>
             <div className="py-2">
               <label htmlFor="currency-select">Choose Currency</label>

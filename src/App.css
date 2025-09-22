@@ -256,6 +256,7 @@ nav {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff !important;
+  padding: 10px;
 
   label {
     display: block;
