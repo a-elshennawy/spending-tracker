@@ -337,21 +337,6 @@ nav {
   transform: translate(-50%, -50%);
 }
 
-.offline-message {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  width: max-content;
-  background-color: #fd000096;
-  color: #fff;
-  backdrop-filter: blur(10px);
-  padding: 5px;
-  border-radius: 10px;
-  z-index: 1111;
-  animation: alertOffline 1s infinite;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -359,18 +344,6 @@ nav {
 html {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-@keyframes alertOffline {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 @media screen and (max-width: 992px) {

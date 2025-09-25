@@ -14,11 +14,6 @@ const ForgetPassword = lazy(() => import("./components/pages/ForgetPassword"));
 function App() {
   return (
     <>
-      <Offline>
-        <div className="offline-message">
-          You're offline. Check your connection.
-        </div>
-      </Offline>
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
