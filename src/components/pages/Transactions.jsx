@@ -1,4 +1,3 @@
-import { FaCircle } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../../firebase";
 import { doc, onSnapshot, updateDoc, arrayRemove } from "firebase/firestore";
@@ -153,7 +152,6 @@ export default function Transactions() {
                 {currency}&nbsp;(&nbsp;
                 {transaction.balanceAfter.toFixed(2)}&nbsp;
                 {currency}&nbsp;)&nbsp;{transaction.category}
-                <FaCircle />
                 <span
                   className="delLog"
                   onClick={() => handleDeleteTransaction(transaction)}
