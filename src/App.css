@@ -8,6 +8,7 @@
 
 :root {
   font-size: 16px;
+  --hometext: #d1d3c4;
   --background: #d1d3c4;
   --text: #775253;
   --btns_1: #351431;
@@ -27,6 +28,7 @@ body {
 }
 
 body.dark {
+  --hometext: #d1d3c4;
   --background: #351431;
   --text: #d1d3c4;
   --btns_1: #d1d3c4;
@@ -116,7 +118,7 @@ nav {
     width: max-content !important;
 
     .text {
-      color: #d1d3c4 !important;
+      color: var(--hometext) !important;
     }
 
     .action {
@@ -151,6 +153,7 @@ nav {
     margin: 10px 0px;
     input {
       background-color: var(--textInBtns_1);
+      color: var(--btns_1);
       border-radius: 10px;
       border: none;
       padding: 5px;
