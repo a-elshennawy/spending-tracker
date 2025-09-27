@@ -116,7 +116,7 @@ nav {
     width: max-content !important;
 
     .text {
-      color: var(--textInBtns_1);
+      color: #d1d3c4 !important;
     }
 
     .action {
