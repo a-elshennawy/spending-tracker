@@ -337,10 +337,6 @@ Modern browsers with ES6+ support:
 4. Push to the branch
 5. Open a pull request
 
-## License
-
-This project is open source and available under the MIT License.
-
 ## Acknowledgments
 
 - Firebase for backend infrastructure
