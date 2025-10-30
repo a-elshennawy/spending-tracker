@@ -255,10 +255,9 @@ nav {
 
 .moneyModal {
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--btns_1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff !important;
+  color: var(--textInBtns_1);
   padding: 10px;
 
   label {
@@ -270,7 +269,8 @@ nav {
   textarea {
     padding: 5px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--btns_2);
+    color: var(--textInBtns_2);
     border: none;
 
     &:focus {
@@ -281,10 +281,10 @@ nav {
   button {
     padding: 5px 10px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background-color: var(--btns_2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff !important;
+    border: none;
+    color: var(--textInBtns_2) !important;
     font-weight: bold;
   }
 }
