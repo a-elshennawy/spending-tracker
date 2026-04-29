@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../../firebase";
+import { AnimatePresence, motion as Motion } from "motion/react";
 
 export default function BalanceActions() {
   const { currentUser } = useAuth();
@@ -47,7 +48,7 @@ export default function BalanceActions() {
       },
       (error) => {
         console.error("error getting balance:", error);
-      }
+      },
     );
 
     return () => unsubscribe();
@@ -72,7 +73,7 @@ export default function BalanceActions() {
     const fetchCurrencies = async () => {
       try {
         const response = await fetch(
-          "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json"
+          "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json",
         );
         const data = await response.json();
 
@@ -118,7 +119,7 @@ export default function BalanceActions() {
       const transactions = walletData.transactions || [];
 
       const response = await fetch(
-        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${oldCurrency.toLowerCase()}.json`
+        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${oldCurrency.toLowerCase()}.json`,
       );
       const data = await response.json();
       const rate = data[oldCurrency.toLowerCase()][newCurrency.toLowerCase()];
@@ -220,101 +221,113 @@ export default function BalanceActions() {
         </button>
       </div>
 
-      {showModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 999,
-          }}
-        >
-          <div ref={modalRef} className="moneyModal text-start">
-            <h4>{transactionType} form</h4>
-            <form onSubmit={handleSubmit}>
-              {error && (
-                <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-              )}
-              <div className="py-2 ">
-                <label htmlFor="amount">Amount</label>
-                <input
-                  type="number"
-                  id="amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  required
-                />
+      <AnimatePresence>
+        {showModal && (
+          <Motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0,0,0,0.5)",
+              zIndex: 999,
+            }}
+          >
+            <div ref={modalRef} className="moneyModal text-start">
+              <h4>{transactionType} form</h4>
+              <form onSubmit={handleSubmit}>
+                {error && (
+                  <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+                )}
+                <div className="py-2 ">
+                  <label htmlFor="amount">Amount</label>
+                  <input
+                    type="number"
+                    id="amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="py-2 ">
+                  <label htmlFor="category">reason for transaction</label>
+                  <input
+                    type="text"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="pt-2 col-12">
+                  <button className="mx-1" type="button" onClick={closeModal}>
+                    Cancel
+                  </button>
+                  <button className="mx-1" type="submit" disabled={loading}>
+                    {loading ? "Submitting..." : "Submit"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </Motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showCurrencyModal && (
+          <Motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0,0,0,0.5)",
+              zIndex: 999,
+            }}
+          >
+            <div ref={modalRef} className="moneyModal text-start">
+              <h4>Select a new currency</h4>
+              <div className="py-2">
+                <label htmlFor="currency-select">Choose Currency</label>
+                <select
+                  id="currency-select"
+                  onChange={handleCurrencyChange}
+                  value={currency}
+                >
+                  {currencyList.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.name} ({c.code})
+                    </option>
+                  ))}
+                </select>
               </div>
-              <div className="py-2 ">
-                <label htmlFor="category">reason for transaction</label>
-                <input
-                  type="text"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="pt-2 col-12">
-                <button className="mx-1" type="button" onClick={closeModal}>
+              <div>
+                <button
+                  className="mt-2"
+                  onClick={() => setShowCurrencyModal(false)}
+                >
                   Cancel
                 </button>
-                <button className="mx-1" type="submit" disabled={loading}>
-                  {loading ? "Submitting..." : "Submit"}
-                </button>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {showCurrencyModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 999,
-          }}
-        >
-          <div ref={modalRef} className="moneyModal text-start">
-            <h4>Select a new currency</h4>
-            <div className="py-2">
-              <label htmlFor="currency-select">Choose Currency</label>
-              <select
-                id="currency-select"
-                onChange={handleCurrencyChange}
-                value={currency}
-              >
-                {currencyList.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.name} ({c.code})
-                  </option>
-                ))}
-              </select>
             </div>
-            <div>
-              <button
-                className="mt-2"
-                onClick={() => setShowCurrencyModal(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          </Motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

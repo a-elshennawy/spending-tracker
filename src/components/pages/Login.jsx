@@ -67,9 +67,6 @@ export default function Login() {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
-          <div className="mb-2">
-            <Link to={"/password-reset"}>forgot password ?</Link>
-          </div>
           <div>
             <Link to={"/signup"}>no account ?</Link>
           </div>

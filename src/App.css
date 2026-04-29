@@ -1,356 +1,357 @@
 @import url("./fonts.css");
 
 * {
-  box-sizing: border-box;
-  text-transform: capitalize !important;
-  font-family: ubuntu, zain !important;
+    box-sizing: border-box;
+    text-transform: capitalize !important;
+    font-family: ubuntu, zain !important;
 }
 
 :root {
-  font-size: 16px;
-  --hometext: #d1d3c4;
-  --background: #d1d3c4;
-  --text: #775253;
-  --btns_1: #351431;
-  --btns_2: #bdc696;
-  --textInBtns_1: #d1d3c4;
-  --textInBtns_2: #351431;
+    font-size: 16px;
+    --hometext: #d1d3c4;
+    --background: #d1d3c4;
+    --text: #775253;
+    --btns_1: #351431;
+    --btns_2: #bdc696;
+    --textInBtns_1: #d1d3c4;
+    --textInBtns_2: #351431;
 }
 
 html,
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 body {
-  background-color: var(--background) !important;
-  transition: all 0.3s ease-in-out;
+    background-color: var(--background) !important;
+    transition: all 0.3s ease-in-out;
 }
 
 body.dark {
-  --hometext: #d1d3c4;
-  --background: #351431;
-  --text: #d1d3c4;
-  --btns_1: #d1d3c4;
-  --btns_2: #bdc696;
-  --textInBtns_1: #351431;
-  --textInBtns_2: #351431;
-  transition: all 0.3s ease-in-out;
+    --hometext: #d1d3c4;
+    --background: #351431;
+    --text: #d1d3c4;
+    --btns_1: #d1d3c4;
+    --btns_2: #bdc696;
+    --textInBtns_1: #351431;
+    --textInBtns_2: #351431;
+    transition: all 0.3s ease-in-out;
 }
 
 section {
-  padding: 60px 0px;
+    padding: 60px 0px;
 }
 
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10px 5px;
-  background-color: #0000004b;
-  backdrop-filter: blur(10px);
-  text-align: end;
-  z-index: 111;
-
-  .logInBtn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--btns_2);
-
-    a {
-      color: var(--textInBtns_2);
-      text-decoration: none;
-      font-weight: bold;
-    }
-  }
-
-  .logoutBtn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--btns_1);
-    color: var(--textInBtns_1);
-  }
-
-  .themeIcon {
-    cursor: pointer;
-    svg {
-      font-size: 25px;
-      color: var(--btns_1);
-    }
-  }
-}
-
-.bgLayer {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: url("/public/imgs/landingPageBG.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: brightness(30%);
-}
-
-.toHomeBtn {
-  position: fixed;
-  top: 10px;
-  left: 5px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--btns_1);
-
-  a {
-    color: var(--textInBtns_1);
-    text-decoration: none;
-    font-weight: bold;
-  }
-}
-
-.landingPage {
-  .innerDev {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: max-content !important;
+    top: 0;
+    left: 0;
+    padding: 10px 5px;
+    background-color: #0000004b;
+    backdrop-filter: blur(10px);
+    text-align: end;
+    z-index: 111;
 
-    .text {
-      color: var(--hometext) !important;
+    .logInBtn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--btns_2);
+
+        a {
+            color: var(--textInBtns_2);
+            text-decoration: none;
+            font-weight: bold;
+        }
     }
 
-    .action {
-      padding: 10px 0px;
-      .signUpBtn {
+    .logoutBtn {
         padding: 5px 10px;
         border: none;
         border-radius: 10px;
         background-color: var(--btns_1);
-
-        a {
-          color: var(--textInBtns_1);
-          text-decoration: none;
-          font-weight: bold;
-        }
-      }
+        color: var(--textInBtns_1);
     }
-  }
+
+    .themeIcon {
+        cursor: pointer;
+        svg {
+            font-size: 25px;
+            color: var(--btns_1);
+        }
+    }
+}
+
+.bgLayer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url("/public/imgs/landingPageBG.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: brightness(30%);
+}
+
+.toHomeBtn {
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--btns_1);
+
+    a {
+        color: var(--textInBtns_1);
+        text-decoration: none;
+        font-weight: bold;
+    }
+}
+
+.landingPage {
+    .innerDev {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content !important;
+
+        .text {
+            color: var(--hometext) !important;
+        }
+
+        .action {
+            padding: 10px 0px;
+            .signUpBtn {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 10px;
+                background-color: var(--btns_1);
+
+                a {
+                    color: var(--textInBtns_1);
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
 }
 
 .logForm {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -30%);
-  background-color: var(--btns_1);
-  color: var(--textInBtns_1);
-  padding: 10px 5px;
-  border-radius: 10px;
-
-  .inputContainer {
-    margin: 10px 0px;
-    input {
-      background-color: var(--textInBtns_1);
-      color: var(--btns_1);
-      border-radius: 10px;
-      border: none;
-      padding: 5px;
-      width: fit-content;
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
-  .logBtn {
-    padding: 5px 10px;
-    border: none;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background-color: var(--btns_1);
+    color: var(--textInBtns_1);
+    padding: 10px 5px;
     border-radius: 10px;
-    background-color: var(--textInBtns_1);
-    color: var(--btns_1);
-    font-weight: bold;
-  }
+
+    .inputContainer {
+        margin: 10px 0px;
+        input {
+            width: 100%;
+            background-color: var(--textInBtns_1);
+            color: var(--btns_1);
+            border-radius: 10px;
+            border: none;
+            padding: 5px;
+            width: fit-content;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .logBtn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--textInBtns_1);
+        color: var(--btns_1);
+        font-weight: bold;
+    }
 }
 
 .home {
-  color: var(--text);
+    color: var(--text);
 
-  .balance {
-    width: max-content;
+    .balance {
+        width: max-content;
 
-    h3 {
-      font-size: 2.188rem;
-    }
-
-    h1 {
-      font-size: 3.75rem;
-
-      span {
-        margin-inline-start: 10px;
-        cursor: pointer;
-        svg {
-          font-size: 1.875rem;
-          color: var(--btns_1);
+        h3 {
+            font-size: 2.188rem;
         }
-      }
-    }
-  }
 
-  .actions {
-    button {
-      padding: 5px 10px;
-      border: none;
-      margin-inline-end: 10px;
-      font-weight: bold;
-      border-radius: 10px;
-    }
+        h1 {
+            font-size: 3.75rem;
 
-    .depBtn {
-      background-color: var(--btns_2);
-      color: var(--textInBtns_2);
-    }
-
-    .withdrawBtn {
-      background-color: var(--btns_1);
-      color: var(--textInBtns_1);
-    }
-  }
-
-  .recent {
-    h5 {
-      padding: 0.313rem 0rem;
-      font-size: 1rem;
-
-      svg {
-        margin-inline-start: 5px;
-        font-size: 0.625rem;
-      }
-
-      .delLog {
-        cursor: pointer;
-        margin-inline-start: 5px;
-        svg {
-          font-size: 20px;
-          color: var(--btns_1) !important;
+            span {
+                margin-inline-start: 10px;
+                cursor: pointer;
+                svg {
+                    font-size: 1.875rem;
+                    color: var(--btns_1);
+                }
+            }
         }
-      }
     }
 
-    button {
-      padding: 5px 10px;
-      background-color: var(--btns_1);
-      border: none;
-      border-radius: 10px;
-      a {
-        text-decoration: none;
-        color: var(--textInBtns_1);
-        font-weight: bold;
-      }
+    .actions {
+        button {
+            padding: 5px 10px;
+            border: none;
+            margin-inline-end: 10px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .depBtn {
+            background-color: var(--btns_2);
+            color: var(--textInBtns_2);
+        }
+
+        .withdrawBtn {
+            background-color: var(--btns_1);
+            color: var(--textInBtns_1);
+        }
     }
-  }
+
+    .recent {
+        h5 {
+            padding: 0.313rem 0rem;
+            font-size: 1rem;
+
+            svg {
+                margin-inline-start: 5px;
+                font-size: 0.625rem;
+            }
+
+            .delLog {
+                cursor: pointer;
+                margin-inline-start: 5px;
+                svg {
+                    font-size: 20px;
+                    color: var(--btns_1) !important;
+                }
+            }
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: var(--btns_1);
+            border: none;
+            border-radius: 10px;
+            a {
+                text-decoration: none;
+                color: var(--textInBtns_1);
+                font-weight: bold;
+            }
+        }
+    }
 }
 
 .moneyModal {
-  border-radius: 10px;
-  background-color: var(--btns_1);
-  backdrop-filter: blur(10px);
-  color: var(--textInBtns_1);
-  padding: 10px;
-
-  label {
-    display: block;
-    padding-bottom: 5px;
-  }
-  input,
-  select,
-  textarea {
-    padding: 5px;
     border-radius: 10px;
-    background-color: var(--btns_2);
-    color: var(--textInBtns_2);
-    border: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  button {
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: var(--btns_2);
+    background-color: var(--btns_1);
     backdrop-filter: blur(10px);
-    border: none;
-    color: var(--textInBtns_2) !important;
-    font-weight: bold;
-  }
+    color: var(--textInBtns_1);
+    padding: 10px;
+
+    label {
+        display: block;
+        padding-bottom: 5px;
+    }
+    input,
+    select,
+    textarea {
+        padding: 5px;
+        border-radius: 10px;
+        background-color: var(--btns_2);
+        color: var(--textInBtns_2);
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: var(--btns_2);
+        backdrop-filter: blur(10px);
+        border: none;
+        color: var(--textInBtns_2) !important;
+        font-weight: bold;
+    }
 }
 
 .transactions {
-  color: var(--text);
+    color: var(--text);
 
-  .spendReport {
-    .spendItem {
-      width: fit-content;
-      background: rgba(56, 56, 56, 0.1) !important;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      color: var(--text) !important;
-      padding: 10px;
+    .spendReport {
+        .spendItem {
+            width: fit-content;
+            background: rgba(56, 56, 56, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text) !important;
+            padding: 10px;
 
-      h3 {
-        font-size: 1.25rem;
-      }
-      h1 {
-        font-size: 1.875rem;
-      }
-    }
-  }
-
-  .logs {
-    h5 {
-      padding: 0.313rem 0rem;
-      font-size: 1rem;
-
-      svg {
-        margin-inline-start: 5px;
-        font-size: 0.625rem;
-      }
-
-      .delLog {
-        cursor: pointer;
-        margin-inline-start: 5px;
-        svg {
-          font-size: 20px;
-          color: var(--btns_1) !important;
+            h3 {
+                font-size: 1.25rem;
+            }
+            h1 {
+                font-size: 1.875rem;
+            }
         }
-      }
     }
-  }
+
+    .logs {
+        h5 {
+            padding: 0.313rem 0rem;
+            font-size: 1rem;
+
+            svg {
+                margin-inline-start: 5px;
+                font-size: 0.625rem;
+            }
+
+            .delLog {
+                cursor: pointer;
+                margin-inline-start: 5px;
+                svg {
+                    font-size: 20px;
+                    color: var(--btns_1) !important;
+                }
+            }
+        }
+    }
 }
 
 .loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @media screen and (max-width: 992px) {
-  :root {
-    font-size: 14px;
-  }
+    :root {
+        font-size: 14px;
+    }
 }
