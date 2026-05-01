@@ -26,7 +26,7 @@ export default function Transactions() {
 
         if (walletData.transactions) {
           const sortedTransactions = [...walletData.transactions].sort(
-            (a, b) => b.timestamp.seconds - a.timestamp.seconds
+            (a, b) => b.timestamp.seconds - a.timestamp.seconds,
           );
 
           setCurrency(walletData.currency);
@@ -39,12 +39,12 @@ export default function Transactions() {
             (t) =>
               t.type === "withdraw" &&
               t.timestamp.toDate().getMonth() === currentMonth &&
-              t.timestamp.toDate().getFullYear() === currentYear
+              t.timestamp.toDate().getFullYear() === currentYear,
           );
 
           const totalMonthlySpent = currentMonthWithdrawals.reduce(
             (sum, t) => sum + t.amount,
-            0
+            0,
           );
           setMonthlySpent(totalMonthlySpent);
 
@@ -64,12 +64,12 @@ export default function Transactions() {
           startOfWeek.setHours(0, 0, 0, 0);
 
           const currentWeekWithdrawals = walletData.transactions.filter(
-            (t) => t.type === "withdraw" && t.timestamp.toDate() >= startOfWeek
+            (t) => t.type === "withdraw" && t.timestamp.toDate() >= startOfWeek,
           );
 
           const totalWeeklySpent = currentWeekWithdrawals.reduce(
             (sum, t) => sum + t.amount,
-            0
+            0,
           );
           setWeeklySpent(totalWeeklySpent);
         } else {
@@ -137,7 +137,6 @@ export default function Transactions() {
           </div>
         </div>
         <div className="logs col-12 px-0 m-0 mt-4">
-          <h3>full transaction history :</h3>
           {transactions.length > 0 ? (
             transactions.map((transaction) => (
               <h5

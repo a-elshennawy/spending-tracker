@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { ThemeToggle } from "../contexts/ThemeProvider";
+import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
+import { FcHome } from "react-icons/fc";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -18,22 +19,31 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="container-fluid m-0">
+      <nav
+        className={
+          !currentUser || location.pathname !== "/transactions"
+            ? "startNav"
+            : ""
+        }
+      >
         {currentUser ? (
           <>
             {location.pathname === "/transactions" && (
-              <button className="toHomeBtn">
-                <Link to={"/"}>home</Link>
+              <button className="navHomeBtn">
+                <Link to={"/"}>
+                  <FcHome size={24} />
+                </Link>
               </button>
             )}
-            <ThemeToggle />
             <button className="logoutBtn" onClick={handleLogout}>
-              sign out
+              <IoMdLogOut size={24} />
             </button>
           </>
         ) : (
           <button className="logInBtn">
-            <Link to={"/login"}>login</Link>
+            <Link to={"/login"}>
+              <IoMdLogIn size={24} />
+            </Link>
           </button>
         )}
       </nav>

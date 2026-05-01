@@ -24,7 +24,7 @@ export default function RecentTransactions() {
 
         if (data.transactions) {
           const sortedTransactions = [...data.transactions].sort(
-            (a, b) => b.timestamp.seconds - a.timestamp.seconds
+            (a, b) => b.timestamp.seconds - a.timestamp.seconds,
           );
 
           setCurrency(data.currency);
@@ -76,11 +76,10 @@ export default function RecentTransactions() {
 
   return (
     <>
-      <div className="recent col-12 px-0 pt-3">
-        <h3>recent transactions :</h3>
+      <div className="recent col-12 px-0">
         {transactions.length > 0 ? (
           transactions.map((transaction) => (
-            <h5
+            <h4
               key={`${transaction.timestamp.seconds}_${transaction.amount}`}
               className={
                 transaction.type === "deposit" ? "deposit" : "withdraw"
@@ -99,13 +98,13 @@ export default function RecentTransactions() {
               >
                 <TiDelete />
               </span>
-            </h5>
+            </h4>
           ))
         ) : (
           <p>No recent transactions.</p>
         )}
         <button className="mt-2">
-          <Link to={"transactions"}>view all here</Link>
+          <Link to={"transactions"}>view all</Link>
         </button>
       </div>
     </>

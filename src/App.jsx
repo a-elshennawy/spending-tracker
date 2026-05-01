@@ -8,7 +8,6 @@ const LandingPage = lazy(() => import("./components/pages/LandingPage"));
 const Transactions = lazy(() => import("./components/pages/Transactions"));
 const Login = lazy(() => import("./components/pages/Login"));
 const Signup = lazy(() => import("./components/pages/Signup"));
-const ForgetPassword = lazy(() => import("./components/pages/ForgetPassword"));
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/password-reset" element={<ForgetPassword />} />
           </Routes>
         </Suspense>
       </Router>

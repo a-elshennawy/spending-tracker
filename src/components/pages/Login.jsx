@@ -65,7 +65,7 @@ export default function Login() {
             disabled={loading}
             type="submit"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "wait..." : "Login"}
           </button>
           <div>
             <Link to={"/signup"}>no account ?</Link>

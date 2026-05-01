@@ -11,6 +11,8 @@ import {
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../../firebase";
 import { AnimatePresence, motion as Motion } from "motion/react";
+import addIcon from "/icons/add-payment.png";
+import minusIcon from "/icons/minus-payment.png";
 
 export default function BalanceActions() {
   const { currentUser } = useAuth();
@@ -198,8 +200,8 @@ export default function BalanceActions() {
 
   return (
     <>
-      <div className="balance col-12 px-0 mb-2">
-        <h3>current balance</h3>
+      <div className="balance col-12 p-2">
+        <h3>total balance</h3>
         <h1>
           {balance !== null ? balance.toFixed(2) : "Loading..."} {currency}
           <span>
@@ -210,14 +212,14 @@ export default function BalanceActions() {
           </span>
         </h1>
       </div>
-      <hr />
 
       <div className="actions d-flex col-12 px-0">
         <button onClick={() => openModal("deposit")} className="depBtn">
-          deposit
+          <img src={addIcon} alt="deposite money" />
         </button>
+
         <button onClick={() => openModal("withdraw")} className="withdrawBtn">
-          withdraw
+          <img src={minusIcon} alt="withdraw money" />
         </button>
       </div>
 
