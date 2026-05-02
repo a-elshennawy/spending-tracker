@@ -9,13 +9,16 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { TiDelete } from "react-icons/ti";
+import { FcDeleteDatabase, FcInfo } from "react-icons/fc";
+import { AnimatePresence, motion as Motion } from "motion/react";
+import { truncateText } from "../helpers";
 
 export default function RecentTransactions() {
   const { currentUser } = useAuth();
   const [transactions, setTransactions] = useState([]);
   const [currency, setCurrency] = useState("EGP");
   const [walletData, setWalletData] = useState(null);
+  const [targetTransaction, setTargetTransaction] = useState(null);
 
   useEffect(() => {
     if (!currentUser.uid) {
@@ -106,26 +109,71 @@ export default function RecentTransactions() {
       <div className="recent col-12 px-0">
         {transactions.length > 0 ? (
           transactions.map((transaction) => (
-            <h4
+            <div
               key={`${transaction.timestamp.seconds}_${transaction.amount}`}
-              className={
-                transaction.type === "deposit" ? "deposit" : "withdraw"
-              }
+              className={`${transaction.type === "deposit" ? "depositCard" : "withdrawCard"} transactionCard`}
             >
-              {formatDate(transaction.timestamp)}&nbsp;
-              {transaction.type === "deposit" ? "+" : "-"}
-              {transaction.amount.toFixed(2)}&nbsp;
-              {currency}&nbsp;(&nbsp;
-              {transaction.balanceAfter.toFixed(2)} {currency}&nbsp;)&nbsp;
-              {transaction.category}
-              <span
-                className="delLog"
-                onClick={() => handleDeleteTransaction(transaction)}
-                style={{ cursor: "pointer" }}
+              <div
+                className="header"
+                onClick={() => {
+                  setTargetTransaction(
+                    targetTransaction?.timestamp.seconds ===
+                      transaction.timestamp.seconds
+                      ? null
+                      : transaction,
+                  );
+                }}
               >
-                <TiDelete />
-              </span>
-            </h4>
+                <span>
+                  <span className="amount">
+                    {transaction.amount.toFixed(2)}&nbsp;{currency}
+                  </span>
+                  &nbsp;-&nbsp;{truncateText(transaction.category, 15)}
+                </span>
+                <span
+                  onClick={() => {
+                    setTargetTransaction(
+                      targetTransaction?.timestamp.seconds ===
+                        transaction.timestamp.seconds
+                        ? null
+                        : transaction,
+                    );
+                  }}
+                >
+                  <FcInfo size={20} />
+                </span>
+              </div>
+              <AnimatePresence>
+                {targetTransaction?.timestamp.seconds ===
+                  transaction.timestamp.seconds && (
+                  <Motion.div
+                    initial={{ opacity: 0, height: 0, overflow: "hidden" }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0, overflow: "hidden" }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="body"
+                  >
+                    <h5>{transaction.category}</h5>
+                    <h5>
+                      <strong>date :&nbsp;</strong>
+                      {formatDate(transaction.timestamp)}
+                    </h5>
+                    <h5>
+                      <strong>balance :&nbsp;</strong>
+                      {transaction.balanceAfter.toFixed(2)}
+                    </h5>
+                    <button
+                      className="delLog"
+                      onClick={() => handleDeleteTransaction(transaction)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      undo transaction&nbsp;
+                      <FcDeleteDatabase />
+                    </button>
+                  </Motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           ))
         ) : (
           <p>No recent transactions.</p>

@@ -14,6 +14,7 @@
     --black: #000;
     --red: #fd0000;
     --green: #00eb1d;
+    --gray: #d6d6d6;
 }
 
 html,
@@ -207,34 +208,12 @@ nav {
     }
 
     .recent {
-        h4 {
-            background-color: var(--primary);
-            padding: 5px;
-            font-size: 1.125rem;
-            border-radius: 10px;
-            color: var(--white);
-            width: fit-content !important;
-
-            svg {
-                margin-inline-start: 5px;
-                font-size: 0.625rem;
-            }
-
-            .delLog {
-                cursor: pointer;
-                margin-inline-start: 5px;
-
-                svg {
-                    font-size: 20px;
-                }
-            }
-        }
-
         button {
             padding: 5px 10px;
             background-color: var(--primary);
             border: none;
             border-radius: 10px;
+
             a {
                 text-decoration: none;
                 color: var(--white);
@@ -346,25 +325,65 @@ nav {
             }
         }
     }
+}
 
-    .logs {
+.transactionCard {
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    background-color: var(--gray);
+    border-radius: 10px;
+    width: fit-content !important;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.5rem;
+
+        .amount {
+            padding: 3px;
+            border-radius: 5px;
+            color: var(--white);
+        }
+    }
+
+    .body {
+        background-color: var(--primary);
+        padding: 5px;
+        margin-top: 5px;
+        color: var(--white);
+        border-radius: 10px;
+
         h5 {
-            padding: 0.313rem 0rem;
-            font-size: 1rem;
+            margin-bottom: 5px;
+        }
 
-            svg {
-                margin-inline-start: 5px;
-                font-size: 0.625rem;
-            }
+        .delLog {
+            padding: 5px 10px;
+            margin-top: 5px;
+            background-color: var(--red) !important;
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+        }
+    }
+}
 
-            .delLog {
-                cursor: pointer;
-                margin-inline-start: 5px;
-                svg {
-                    font-size: 20px;
-                    color: var(--btns_1) !important;
-                }
-            }
+.depositCard {
+    .header {
+        .amount {
+            background-color: var(--green);
+            color: var(--primary);
+        }
+    }
+}
+
+.withdrawCard {
+    .header {
+        .amount {
+            background-color: var(--red);
         }
     }
 }

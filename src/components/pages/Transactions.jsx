@@ -1,9 +1,17 @@
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../../firebase";
-import { doc, onSnapshot, updateDoc, arrayRemove } from "firebase/firestore";
+import {
+  getDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 
 import { useEffect, useState } from "react";
-import { TiDelete } from "react-icons/ti";
+import { FcDeleteDatabase, FcInfo } from "react-icons/fc";
+import { AnimatePresence, motion as Motion } from "motion/react";
+import { truncateText } from "../reusables/helpers";
 
 export default function Transactions() {
   const { currentUser } = useAuth();
@@ -12,6 +20,7 @@ export default function Transactions() {
   const [monthlySpent, setMonthlySpent] = useState(0);
   const [weeklySpent, setWeeklySpent] = useState(0);
   const [walletData, setWalletData] = useState(null);
+  const [targetTransaction, setTargetTransaction] = useState(null);
 
   useEffect(() => {
     if (!currentUser.uid) {
@@ -101,6 +110,8 @@ export default function Transactions() {
 
     try {
       const walletRef = doc(db, "wallets", currentUser.uid);
+      const walletSnap = await getDoc(walletRef);
+      const walletData = walletSnap.data();
 
       let newBalance;
       if (transaction.type === "deposit") {
@@ -109,10 +120,24 @@ export default function Transactions() {
         newBalance = walletData.balance + transaction.amount;
       }
 
-      await updateDoc(walletRef, {
+      const updateData = {
         balance: newBalance,
         transactions: arrayRemove(transaction),
-      });
+      };
+
+      if (transaction.method === "pocket") {
+        updateData.pocket_balance =
+          transaction.type === "deposit"
+            ? walletData.pocket_balance - transaction.amount
+            : walletData.pocket_balance + transaction.amount;
+      } else {
+        updateData.card_balance =
+          transaction.type === "deposit"
+            ? walletData.card_balance - transaction.amount
+            : walletData.card_balance + transaction.amount;
+      }
+
+      await updateDoc(walletRef, updateData);
     } catch (error) {
       console.error("Error deleting transaction:", error);
       alert("Failed to delete transaction. Please try again.");
@@ -139,26 +164,71 @@ export default function Transactions() {
         <div className="logs col-12 px-0 m-0 mt-4">
           {transactions.length > 0 ? (
             transactions.map((transaction) => (
-              <h5
-                key={transaction.timestamp.seconds}
-                className={
-                  transaction.type === "deposit" ? "deposit" : "withdraw"
-                }
+              <div
+                key={`${transaction.timestamp.seconds}_${transaction.amount}`}
+                className={`${transaction.type === "deposit" ? "depositCard" : "withdrawCard"} transactionCard`}
               >
-                {formatDate(transaction.timestamp)}&nbsp;
-                {transaction.type === "deposit" ? "+" : "-"}
-                {transaction.amount}&nbsp;
-                {currency}&nbsp;(&nbsp;
-                {transaction.balanceAfter.toFixed(2)}&nbsp;
-                {currency}&nbsp;)&nbsp;{transaction.category}
-                <span
-                  className="delLog"
-                  onClick={() => handleDeleteTransaction(transaction)}
-                  style={{ cursor: "pointer" }}
+                <div
+                  className="header"
+                  onClick={() => {
+                    setTargetTransaction(
+                      targetTransaction?.timestamp.seconds ===
+                        transaction.timestamp.seconds
+                        ? null
+                        : transaction,
+                    );
+                  }}
                 >
-                  <TiDelete />
-                </span>
-              </h5>
+                  <span>
+                    <span className="amount">
+                      {transaction.amount.toFixed(2)}&nbsp;{currency}
+                    </span>
+                    &nbsp;-&nbsp;{truncateText(transaction.category, 15)}
+                  </span>
+                  <span
+                    onClick={() => {
+                      setTargetTransaction(
+                        targetTransaction?.timestamp.seconds ===
+                          transaction.timestamp.seconds
+                          ? null
+                          : transaction,
+                      );
+                    }}
+                  >
+                    <FcInfo size={20} />
+                  </span>
+                </div>
+                <AnimatePresence>
+                  {targetTransaction?.timestamp.seconds ===
+                    transaction.timestamp.seconds && (
+                    <Motion.div
+                      initial={{ opacity: 0, height: 0, overflow: "hidden" }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0, overflow: "hidden" }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="body"
+                    >
+                      <h5>{transaction.category}</h5>
+                      <h5>
+                        <strong>date :&nbsp;</strong>
+                        {formatDate(transaction.timestamp)}
+                      </h5>
+                      <h5>
+                        <strong>balance :&nbsp;</strong>
+                        {transaction.balanceAfter.toFixed(2)}
+                      </h5>
+                      <button
+                        className="delLog"
+                        onClick={() => handleDeleteTransaction(transaction)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        undo transaction&nbsp;
+                        <FcDeleteDatabase />
+                      </button>
+                    </Motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))
           ) : (
             <p>No recent transactions.</p>
