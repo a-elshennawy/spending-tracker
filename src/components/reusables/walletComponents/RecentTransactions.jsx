@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../../firebase";
-import { doc, onSnapshot, updateDoc, arrayRemove } from "firebase/firestore";
+import {
+  getDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 
@@ -56,6 +62,8 @@ export default function RecentTransactions() {
 
     try {
       const walletRef = doc(db, "wallets", currentUser.uid);
+      const walletSnap = await getDoc(walletRef);
+      const walletData = walletSnap.data();
 
       let newBalance;
       if (transaction.type === "deposit") {
@@ -64,10 +72,29 @@ export default function RecentTransactions() {
         newBalance = walletData.balance + transaction.amount;
       }
 
-      await updateDoc(walletRef, {
+      const updateData = {
         balance: newBalance,
         transactions: arrayRemove(transaction),
-      });
+      };
+
+      if (transaction.method === "pocket") {
+        updateData.pocket_balance =
+          transaction.type === "deposit"
+            ? walletData.pocket_balance - transaction.amount
+            : walletData.pocket_balance + transaction.amount;
+      } else {
+        updateData.card_balance =
+          transaction.type === "deposit"
+            ? walletData.card_balance - transaction.amount
+            : walletData.card_balance + transaction.amount;
+      }
+
+      await updateDoc(walletRef, updateData);
+
+      // await updateDoc(walletRef, {
+      //   balance: newBalance,
+      //   transactions: arrayRemove(transaction),
+      // });
     } catch (error) {
       console.error("Error deleting transaction:", error);
       alert("Failed to delete transaction. Please try again.");

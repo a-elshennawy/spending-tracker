@@ -24,6 +24,7 @@ export default function BalanceActions() {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [method, setMethod] = useState("pocket");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [currencyList, setCurrencyList] = useState([]);
@@ -162,6 +163,9 @@ export default function BalanceActions() {
 
     try {
       const walletRef = doc(db, "wallets", currentUser.uid);
+      const walletSnap = await getDoc(walletRef);
+      const walletData = walletSnap.data();
+
       const newAmount = parseFloat(amount);
 
       if (transactionType === "withdraw" && balance < newAmount) {
@@ -172,8 +176,8 @@ export default function BalanceActions() {
 
       const newBalance =
         transactionType === "deposit"
-          ? parseFloat(balance) + parseFloat(newAmount)
-          : parseFloat(balance) - parseFloat(newAmount);
+          ? parseFloat(balance) + newAmount
+          : parseFloat(balance) - newAmount;
 
       const newTransaction = {
         amount: newAmount,
@@ -182,13 +186,27 @@ export default function BalanceActions() {
         timestamp: Timestamp.now(),
         type: transactionType,
         balanceAfter: newBalance,
+        method: method,
       };
 
-      await updateDoc(walletRef, {
+      const updateData = {
         balance: newBalance,
         transactions: arrayUnion(newTransaction),
-      });
+      };
 
+      if (method === "pocket") {
+        updateData.pocket_balance =
+          transactionType === "deposit"
+            ? walletData.pocket_balance + newAmount
+            : walletData.pocket_balance - newAmount;
+      } else {
+        updateData.card_balance =
+          transactionType === "deposit"
+            ? walletData.card_balance + newAmount
+            : walletData.card_balance - newAmount;
+      }
+
+      await updateDoc(walletRef, updateData);
       closeModal();
     } catch (err) {
       console.error("Failed to update wallet:", err);
@@ -268,8 +286,29 @@ export default function BalanceActions() {
                     required
                   />
                 </div>
+                <div className="py-2 methodSelection">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMethod("pocket");
+                    }}
+                    className={`${method == "pocket" ? "selectedMethod" : ""}`}
+                  >
+                    pocket
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMethod("card");
+                    }}
+                    className={`${method == "card" ? "selectedMethod" : ""}`}
+                  >
+                    card / wallet
+                  </button>
+                </div>
                 <div className="pt-2 col-12">
-                  <button className="mx-1" type="button" onClick={closeModal}>
+                  <button type="button" onClick={closeModal}>
                     Cancel
                   </button>
                   <button className="mx-1" type="submit" disabled={loading}>
